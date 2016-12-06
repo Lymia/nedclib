@@ -274,9 +274,9 @@ int main(int argc, char **argv)
 			VERBOSE("Inserting Modulated Data into BMP\n")
 			makebmp();
 			if(num_raw==1)
-				sprintf(filename,"%s.bmp",argv[OutFile]);
+				snprintf(filename,sizeof(filename),"%s.bmp",argv[OutFile]);
 			else
-				sprintf(filename,"%s-%.2d.bmp",argv[OutFile],i+1);
+				snprintf(filename,sizeof(filename),"%s-%.2d.bmp",argv[OutFile],i+1);
 			g=fopen(filename,"wb");
 			if(g!=NULL)
 			{

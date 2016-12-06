@@ -1,10 +1,8 @@
 // nedclib.cpp : Defines the entry point for the DLL application.
 //
 
-#include "stdafx.h"
 #include <stdio.h>
 #include <malloc.h>
-
 
 #include "nedclib.h"
 #include "rawbin/rs.h"
@@ -194,7 +192,7 @@ NEDCLIB_API int is_bmp(char *bmpfile)
 	unsigned short bmp_header;
 	unsigned int bmp_size;
 	unsigned int file_size;
-	if(fopen_s(&f,bmpfile,"rb"))
+	if(f = fopen(bmpfile,"rb"))
 		return 0;
 	fread(&bmp_header,2,1,f);
 	fread(&bmp_size,4,1,f);
@@ -209,45 +207,7 @@ NEDCLIB_API int is_bmp(char *bmpfile)
 
 }
 
-
 NEDCLIB_API int MultiStrip=0;
-
-
-
-
-
-#ifdef _MANAGED
-#pragma managed(push, off)
-#endif
-
-BOOL APIENTRY DllMain( HMODULE hModule,
-                       DWORD  ul_reason_for_call,
-                       LPVOID lpReserved
-					 )
-{
-	switch (ul_reason_for_call)
-	{
-	case DLL_PROCESS_ATTACH:
-	case DLL_THREAD_ATTACH:
-	case DLL_THREAD_DETACH:
-	case DLL_PROCESS_DETACH:
-		break;
-	}
-    return TRUE;
-}
-
-#ifdef _MANAGED
-#pragma managed(pop)
-#endif
 
 NEDCLIB_API int version_major = VERSION_MAJOR;
 NEDCLIB_API int version_minor = VERSION_MINOR;
-
-
-/*
-// This is the constructor of a class that has been exported.
-// see nedclib.h for the class definition
-Cnedclib::Cnedclib()
-{
-	return;
-}*/

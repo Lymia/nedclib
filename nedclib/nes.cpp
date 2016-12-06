@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "nedclib.h"
 
 char DMCA_data[0x19] = "\0\0DMCA NINTENDO E-READER";

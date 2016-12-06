@@ -1,5 +1,3 @@
-#include "stdafx.h"
-
 #define DCS
 #include "dcs.h"
 

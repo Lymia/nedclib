@@ -5,11 +5,18 @@
 // NEDCLIB_API functions as being imported from a DLL, whereas this DLL sees symbols
 // defined with this macro as being exported.
 #ifdef NEDCLIB_EXPORTS
-#define NEDCLIB_API __declspec(dllexport)
+  #ifdef _WIN32
+    #define NEDCLIB_API __declspec(dllexport)
+  #else
+    #define NEDCLIB_API __attribute__((visibility("default")))
+  #endif
 #else
-#define NEDCLIB_API __declspec(dllimport)
+  #ifdef _WIN32
+    #define NEDCLIB_API __declspec(dllimport)
+  #else
+    #define NEDCLIB_API
+  #endif
 #endif
-
 
 //#define GENERIC_DOTCODE 1
 

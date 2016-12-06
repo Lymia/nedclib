@@ -1,8 +1,6 @@
-
-#include "stdafx.h"
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-
 
 #include "../nedclib.h"
 
@@ -73,7 +71,7 @@ NEDCLIB_API int raw2bmp(char *rawfile, char *bmpfile)
 	FILE *f, *g;
 	char filename[256];
 
-	if(fopen_s(&f,rawfile,"rb"))
+	if(f = fopen(rawfile,"rb"))
 	{
 		return 1;
 	}
@@ -107,10 +105,10 @@ NEDCLIB_API int raw2bmp(char *rawfile, char *bmpfile)
 			//flipbmp();
 			makebmp();
 			if(num_raw==1)
-				sprintf_s(filename,255,"%s.bmp",bmpfile);
+				snprintf(filename,sizeof(filename),"%s.bmp",bmpfile);
 			else
-				sprintf_s(filename,255,"%s-%.2d.bmp",bmpfile,i+1);
-			if(!fopen_s(&g,filename,"wb"))
+				snprintf(filename,sizeof(filename),"%s-%.2d.bmp",bmpfile,i+1);
+			if(!(g = fopen(filename,"wb")))
 			{
 				write_bmp(g);
 				fclose(g);
@@ -160,10 +158,10 @@ NEDCLIB_API int raw2bmp_f(unsigned char *rawdata, char *bmpfile)
 			//flipbmp();
 			makebmp();
 			if(num_raw==1)
-				sprintf_s(filename,255,"%s.bmp",bmpfile);
+				snprintf(filename,sizeof(filename),"%s.bmp",bmpfile);
 			else
-				sprintf_s(filename,255,"%s-%.2d.bmp",bmpfile,i+1);
-			if(fopen_s(&g,filename,"wb"))
+				snprintf(filename,sizeof(filename),"%s-%.2d.bmp",bmpfile,i+1);
+			if(g = fopen(filename,"wb"))
 			{
 				write_bmp(g);
 				fclose(g);
@@ -182,7 +180,7 @@ NEDCLIB_API int bmp2raw(char *bmpfile, char *rawfile)
 {
 	FILE *f;
 	int filelen;
-	if(fopen_s(&f,bmpfile,"rb"))
+	if(f = fopen(bmpfile,"rb"))
 		return 1;
 	if(!read_bmp(f))
 	{
@@ -197,14 +195,14 @@ NEDCLIB_API int bmp2raw(char *bmpfile, char *rawfile)
 
 	if(MultiStrip)
 	{
-		if(fopen_s(&f,rawfile,"rb+"))
-			if(fopen_s(&f,rawfile,"wb"))
+		if(f = fopen(rawfile,"rb+"))
+			if(f = fopen(rawfile,"wb"))
 				return 1;
 		fseek(f,0,SEEK_END);  //Append raw to end of existing raw file.
 	}
 	else
 	{
-		if(fopen_s(&f,rawfile,"wb"))
+		if(f = fopen(rawfile,"wb"))
 			return 1;
 	}
 	if(dotcodelen == 28)

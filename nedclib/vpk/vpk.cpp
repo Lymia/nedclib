@@ -1,6 +1,3 @@
-
-#include "stdafx.h"
-
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
@@ -20,7 +17,7 @@ void log_only_write(char* str, ...)
 	char tmpstr[MAX_LOG_STR];
 	va_list args;
 	va_start(args,str);
-	vsprintf_s(tmpstr,MAX_LOG_STR-1,str,args);
+	vsnprintf(tmpstr,sizeof(tmpstr),str,args);
 	va_end(args);
 	if(log!=NULL)
 		fprintf(log,tmpstr);
@@ -31,7 +28,7 @@ NEDCLIB_API void log_write(char* str, ...)
 	char tmpstr[MAX_LOG_STR];
 	va_list args;
 	va_start(args,str);
-	vsprintf_s(tmpstr,MAX_LOG_STR-1,str,args);
+	vsnprintf(tmpstr,sizeof(tmpstr),str,args);
 	va_end(args);
 	if(verbose==1)
 		printf(tmpstr);
