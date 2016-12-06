@@ -1,0 +1,18 @@
+Version 1.0
+  * Initial release
+  
+Version 1.1
+  * Added support for encoding short raw to bmp
+  
+Version 1.2 (Name change from dcstool to raw2bmp)
+  * Added support for decoding short bmp to raw
+  * bug fixed decoding of bmps with swapped pallette
+  
+Version 1.3
+  * Ported to nedclib.dll
+  * Now supports multistrip raw files.  (Upcoming feature of no$gba)
+  
+Version 1.4
+  * Rewrote command line interface.  Now can list multiple input/output files.
+  * Added option to decode bmp to multistrip raw output.
+  * Added DPI command line option. (300/600/1200 dpi)

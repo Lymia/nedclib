@@ -1,0 +1,27 @@
+This DLL, and its lib file, is for the development of other nintendo e-reader related tools.  THe source code is availble, under gpl.
+
+History
+Version 1.0
+	* Initial release
+	
+Version 1.1
+	* added is_nes(unsigned char *nesdata)
+	* added is_vpk(unsigned char *bindata)
+	* added make_nes(unsigned char *nesdata)
+	* added nes_enc(unsigned short NMI_vector)
+	* added nes_dec(unsigned short NMI_vector)
+	
+Version 1.2
+	* added is_bmp(char *bmpfile)
+	* added MultiStrip flag;
+	* made dpi_multiplier available externally;
+Version 1.3
+	* Finally ditched the emulation core code for actual
+	  reed-solomon encoding/decoding functions.
+          (Thanks Martin Korth for finding the code, and
+           Simon Rockcliff, Robert Morelos-Zaragoza and Hari Thirumoorthy for
+	   writing that code.)
+	* Added multistrip bin support.
+	* Upgraded bin format to 0x840/0x540 byte format.  (Still need to rebuild
+	  the rest of my tools for both multistrip bin and multistrip raw format.
+	  (The tools being nedcprint, and vba e-reader))

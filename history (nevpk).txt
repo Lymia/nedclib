@@ -1,0 +1,33 @@
+Build 0
+  * Initial release
+
+Build 1
+  * Added preliminary level 2 compression
+  * Added decompression
+
+Build 2
+  * Improved level 2 compression.
+  * Added lzsize option.
+
+Build 3
+  * Added method 1 compression/decompression
+
+Build 4
+  * Optimized LZ compressor
+  * Optimized huffman tree builder
+
+Build 5
+  * Broke decompressor while implementing verbose info. fixed.
+
+Build 6
+  * Fixed bug that caused method 1 level 2 compressor to crash.
+
+Build 7
+  * Fixed bug that caused level 0 compressed files to crash decompressor.
+  * Added output logging of decompression.
+
+Build 8
+  * Ported functions to nedclib.dll
+  * added a brute force level 3 compressor. (Really slow)
+  * Minimum lz77 run is 2 bytes (actually produces smaller files)
+    (Thanks Martin Korth)
