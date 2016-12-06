@@ -12,7 +12,7 @@ NEDCLIB_API int verbose=0;
 unsigned char *bitstore=NULL;
 
 #define MAX_LOG_STR 256
-void log_only_write(char* str, ...)
+void log_only_write(const char* str, ...)
 {
 	char tmpstr[MAX_LOG_STR];
 	va_list args;
@@ -23,7 +23,7 @@ void log_only_write(char* str, ...)
 		fprintf(log,tmpstr);
 }
 
-NEDCLIB_API void log_write(char* str, ...)
+NEDCLIB_API void log_write(const char* str, ...)
 {
 	char tmpstr[MAX_LOG_STR];
 	va_list args;
