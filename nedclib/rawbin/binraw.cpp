@@ -63,7 +63,7 @@ unsigned char longheader[0x18] = {
 NEDCLIB_API int signature=0;
 NEDCLIB_API unsigned char signature_str[0x30];
 
-int dotcodelen;
+static int dotcodelen;
 unsigned char bin_header[24];
 
 void raw_header(unsigned char *bindata, unsigned char *data, int size)
