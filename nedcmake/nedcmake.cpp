@@ -1,7 +1,3 @@
-// necmaker.cpp : Defines the entry point for the console application.
-//
-#include "stdafx.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -414,71 +410,71 @@ int main(int argc, char* argv[])
 	for(i=1;i<argc;i++)
 	{
 
-		if(!_stricmp(argv[i],"-region"))
+		if(!strcasecmp(argv[i],"-region"))
 		{
 			i++;
 			region = atoi(argv[i]);
 			continue;
 		}
-		if(!_stricmp(argv[i],"-type"))
+		if(!strcasecmp(argv[i],"-type"))
 		{
 			i++;
 			apptype = atoi(argv[i]);
 			continue;
 		}
-		if(!_stricmp(argv[i],"-title"))
+		if(!strcasecmp(argv[i],"-title"))
 		{
 			i++;
 			process_title(argv[i],numtitles,mode,region,1);
 			numtitles++;
 			continue;
 		}
-		if(!_stricmp(argv[i],"-name"))
+		if(!strcasecmp(argv[i],"-name"))
 		{
 			i++;
 			process_title(argv[i],0,mode,region,1);
 			continue;
 		}
-		if(!_stricmp(argv[i],"-o"))
+		if(!strcasecmp(argv[i],"-o"))
 		{
 			i++;
 			basename=i;
 			continue;
 		}
-		if(!_stricmp(argv[i],"-i"))
+		if(!strcasecmp(argv[i],"-i"))
 		{
 			i++;
 			filename=i;
 			continue;
 		}
-		if(!_stricmp(argv[i],"-bin"))
+		if(!strcasecmp(argv[i],"-bin"))
 		{
 			bin = 1;
 			continue;
 		}
-		if(!_stricmp(argv[i],"-raw"))
+		if(!strcasecmp(argv[i],"-raw"))
 		{
 			raw = 1;
 			continue;
 		}
-		if(!_stricmp(argv[i],"-bmp"))
+		if(!strcasecmp(argv[i],"-bmp"))
 		{
 			bmp = 1;
 			continue;
 		}
-		if(!_stricmp(argv[i],"-fill"))
+		if(!strcasecmp(argv[i],"-fill"))
 		{
 			i++;
 			fill = atoi(argv[i]);
 			continue;
 		}
-		if(!_stricmp(argv[i],"-music"))
+		if(!strcasecmp(argv[i],"-music"))
 		{
 			i++;
 			music=atoi(argv[i]);
 			continue;
 		}
-		if(!_stricmp(argv[i],"-titlemode"))
+		if(!strcasecmp(argv[i],"-titlemode"))
 		{
 			i++;
 			mode=atoi(argv[i]);
@@ -519,7 +515,7 @@ int main(int argc, char* argv[])
 			}
 			continue;
 		}
-		if(!_stricmp(argv[i],"-dcsize"))
+		if(!strcasecmp(argv[i],"-dcsize"))
 		{
 			i++;
 			if(argv[i][0] == '0')
@@ -528,14 +524,14 @@ int main(int argc, char* argv[])
 				cardsize=0x51C;
 			continue;
 		}
-		if(!_stricmp(argv[i],"-save"))
+		if(!strcasecmp(argv[i],"-save"))
 		{
 			i++;
 			allowsave=atoi(argv[i]);
 			continue;
 		}
 
-		if(!_stricmp(argv[i],"-dpi"))
+		if(!strcasecmp(argv[i],"-dpi"))
 		{
 			i++;
 			switch(atoi(argv[i]))
@@ -557,7 +553,7 @@ int main(int argc, char* argv[])
 			continue;
 		}
 
-		if((!_stricmp(argv[i],"-help"))||(!_stricmp(argv[i],"-?")))
+		if((!strcasecmp(argv[i],"-help"))||(!strcasecmp(argv[i],"-?")))
 		{
 			usage(1);
 			return 1;
@@ -604,7 +600,7 @@ int main(int argc, char* argv[])
 	
 	//f=fopen(argv[filename],"rb");
 	//if(f==NULL)
-	if(fopen_s(&f,argv[filename],"rb"))
+	if(nedc_fopen(&f,argv[filename],"rb"))
 	{
 		printf("Error: VPK file could not be opened for reading\n");
 		//Could not open vpk file
@@ -791,10 +787,10 @@ int main(int argc, char* argv[])
 		{
 			
 			if(basename)
-				sprintf_s(fn,255,"%s.%.2d.bin",argv[basename],i);
+				snprintf(fn,sizeof(fn),"%s.%.2d.bin",argv[basename],i);
 			else
-				sprintf_s(fn,255,"%.2d.bin",i);
-			if(fopen_s(&f,fn,"wb"))
+				snprintf(fn,sizeof(fn),"%.2d.bin",i);
+			if(nedc_fopen(&f,fn,"wb"))
 			{
 				printf("Unable to create Dotcode set\n");
 				return 1;
@@ -806,9 +802,9 @@ int main(int argc, char* argv[])
 		if(raw)
 		{
 			if(basename)
-				sprintf_s(fn2,255,"%s-%.2d.raw",argv[basename],i);
+				snprintf(fn2,sizeof(fn2),"%s-%.2d.raw",argv[basename],i);
 			else
-				sprintf_s(fn2,255,"%.2d.raw",i);
+				snprintf(fn2,sizeof(fn2),"%.2d.raw",i);
 			if(bin2raw_f(carddata,fn2,cardsize))
 			{
 				return 1;
@@ -818,9 +814,9 @@ int main(int argc, char* argv[])
 		if(bmp)
 		{
 			if(basename)
-				sprintf_s(fn,255,"%s-%.2d",argv[basename],i);
+				snprintf(fn,sizeof(fn),"%s-%.2d",argv[basename],i);
 			else
-				sprintf_s(fn,255,"%.2d",i);
+				snprintf(fn,sizeof(fn),"%.2d",i);
 			if(!raw)
 			{
 				if(bin2raw_d(carddata,rawdata,cardsize))

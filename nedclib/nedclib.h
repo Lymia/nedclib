@@ -47,12 +47,13 @@ int read_next_bin(FILE *f, unsigned char *bindata);
 void backtrack_raw(FILE *f);
 int close_raw(FILE *f, int return_res);
 
-
 //--- common external functions ---
 NEDCLIB_API void nedclib_version(void);
 NEDCLIB_API int is_vpk(unsigned char *bindata);
 NEDCLIB_API int is_nes(unsigned char *nesdata);
 NEDCLIB_API int is_bmp(char *bmpfile);
+
+NEDCLIB_API int nedc_fopen(FILE** f, const char* name, const char* mode);
 
 extern NEDCLIB_API int version_major;
 extern NEDCLIB_API int version_minor;
@@ -77,7 +78,7 @@ extern NEDCLIB_API int dpi_multiplier;
 //--- NEVPK FUNCTIONS ---
 NEDCLIB_API int NVPK_compress (unsigned char *buf, int size, int compression_level, int lzwindow, int lzsize, int method, FILE *f, unsigned char *bitdata=NULL);
 NEDCLIB_API int vpk_decompress (unsigned char *vpk, FILE *f);
-NEDCLIB_API void log_write(char* str, ...);
+NEDCLIB_API void log_write(const char* str, ...);
 extern NEDCLIB_API FILE *log;
 extern NEDCLIB_API int verbose;
 extern NEDCLIB_API unsigned long bits_written;

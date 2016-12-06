@@ -12,6 +12,12 @@ int bin_pos;
 
 int bin_type=0; //0 = Single File NEDC bin.  1 = Multi file NEDC bin.  2 = Multi file DRPD bin.
 
+NEDCLIB_API int nedc_fopen(FILE** f, const char* name, const char* mode) {
+  FILE* handle = fopen(name, mode);
+  *f = handle;
+  return !handle;
+}
+
 int count_bin(FILE *f)
 {
 	int count=0;
@@ -90,7 +96,7 @@ int read_next_raw(FILE *f, unsigned char *rawdata)
 	raw_pos = ftell(f);
 
 	unsigned char rawheader[24];
-	int i,j,k,l;
+	int i = 0, j = 0, k = 0, l = 0;
 
 	if(is_rs_initialized())
 		l=1;
@@ -192,7 +198,7 @@ NEDCLIB_API int is_bmp(char *bmpfile)
 	unsigned short bmp_header;
 	unsigned int bmp_size;
 	unsigned int file_size;
-	if(f = fopen(bmpfile,"rb"))
+	if(nedc_fopen(&f,bmpfile,"rb"))
 		return 0;
 	fread(&bmp_header,2,1,f);
 	fread(&bmp_size,4,1,f);

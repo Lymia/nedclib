@@ -71,7 +71,7 @@ NEDCLIB_API int raw2bmp(char *rawfile, char *bmpfile)
 	FILE *f, *g;
 	char filename[256];
 
-	if(f = fopen(rawfile,"rb"))
+	if(nedc_fopen(&f,rawfile,"rb"))
 	{
 		return 1;
 	}
@@ -108,7 +108,7 @@ NEDCLIB_API int raw2bmp(char *rawfile, char *bmpfile)
 				snprintf(filename,sizeof(filename),"%s.bmp",bmpfile);
 			else
 				snprintf(filename,sizeof(filename),"%s-%.2d.bmp",bmpfile,i+1);
-			if(!(g = fopen(filename,"wb")))
+			if(!nedc_fopen(&g,filename,"wb"))
 			{
 				write_bmp(g);
 				fclose(g);
@@ -161,7 +161,7 @@ NEDCLIB_API int raw2bmp_f(unsigned char *rawdata, char *bmpfile)
 				snprintf(filename,sizeof(filename),"%s.bmp",bmpfile);
 			else
 				snprintf(filename,sizeof(filename),"%s-%.2d.bmp",bmpfile,i+1);
-			if(g = fopen(filename,"wb"))
+			if(!nedc_fopen(&g,filename,"wb"))
 			{
 				write_bmp(g);
 				fclose(g);
@@ -180,7 +180,7 @@ NEDCLIB_API int bmp2raw(char *bmpfile, char *rawfile)
 {
 	FILE *f;
 	int filelen;
-	if(f = fopen(bmpfile,"rb"))
+	if(nedc_fopen(&f,bmpfile,"rb"))
 		return 1;
 	if(!read_bmp(f))
 	{
@@ -195,14 +195,14 @@ NEDCLIB_API int bmp2raw(char *bmpfile, char *rawfile)
 
 	if(MultiStrip)
 	{
-		if(f = fopen(rawfile,"rb+"))
-			if(f = fopen(rawfile,"wb"))
+		if(nedc_fopen(&f,rawfile,"rb+"))
+			if(nedc_fopen(&f,rawfile,"wb"))
 				return 1;
 		fseek(f,0,SEEK_END);  //Append raw to end of existing raw file.
 	}
 	else
 	{
-		if(f = fopen(rawfile,"wb"))
+		if(nedc_fopen(&f,rawfile,"wb"))
 			return 1;
 	}
 	if(dotcodelen == 28)

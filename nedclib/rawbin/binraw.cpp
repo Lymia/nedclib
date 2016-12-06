@@ -164,7 +164,7 @@ NEDCLIB_API int bin2raw(char *binfile, char *rawfile)
 
 	initialize_rs();
 
-	if(f = fopen(binfile,"rb"))
+	if(nedc_fopen(&f,binfile,"rb"))
 		return -1; //Input file not opened.
 
 	count=count_bin(f);
@@ -235,14 +235,14 @@ NEDCLIB_API int bin2raw(char *binfile, char *rawfile)
 
 		if(MultiStrip)
 		{
-			if(g = fopen(rawfile,"rb+"))
-				if(g = fopen(rawfile,"wb"))
+			if(nedc_fopen(&g,rawfile,"rb+"))
+				if(nedc_fopen(&g,rawfile,"wb"))
 					return -4;
 			fseek(g,0,SEEK_END);  //Append raw to end of existing raw file.
 		}
 		else
 		{
-			if(g = fopen(rawfile,"wb"))
+			if(nedc_fopen(&g,rawfile,"wb"))
 				return -4;
 		}
 		fwrite(raw,1,j+k,g);
@@ -440,14 +440,14 @@ NEDCLIB_API int bin2raw_f(unsigned char *bin, char *rawfile, int size)
 
 	if(MultiStrip)
 	{
-		if(g = fopen(rawfile,"rb+"))
-			if(g = fopen(rawfile,"wb"))
+		if(nedc_fopen(&g,rawfile,"rb+"))
+			if(nedc_fopen(&g,rawfile,"wb"))
 				return -4;
 		fseek(g,0,SEEK_END);  //Append raw to end of existing raw file.
 	}
 	else
 	{
-		if(g = fopen(rawfile,"wb"))
+		if(nedc_fopen(&g,rawfile,"wb"))
 			return -4;
 	}
 	fwrite(raw,1,j+k,g);
@@ -494,7 +494,7 @@ NEDCLIB_API int raw2bin(char *rawfile, char *binfile)
 
 	initialize_rs();
 
-	if(f = fopen(rawfile,"rb"))
+	if(nedc_fopen(&f,rawfile,"rb"))
 		return -1; //Input file not opened.
 	numraw=count_raw(f);
 	if(numraw==0)
@@ -580,8 +580,8 @@ NEDCLIB_API int raw2bin(char *rawfile, char *binfile)
 
 		if(MultiStrip)
 		{
-			if(g = fopen(filename,"rb+"))
-				if(g = fopen(filename,"wb"))
+			if(nedc_fopen(&g,filename,"rb+"))
+				if(nedc_fopen(&g,filename,"wb"))
 					return -4;
 			if(!count_bin(g))
 			{
@@ -596,7 +596,7 @@ NEDCLIB_API int raw2bin(char *rawfile, char *binfile)
 		else
 		{
 			bin_type=0;
-			if(g = fopen(filename,"wb"))
+			if(nedc_fopen(&g,filename,"wb"))
 				return -4;
 		}
 		//fwrite(raw,1,j+k,g);
@@ -648,7 +648,7 @@ NEDCLIB_API int fixraw(char *rawfile)
 
 	initialize_rs();
 
-	if(f = fopen(rawfile,"rb+"))
+	if(nedc_fopen(&f,rawfile,"rb+"))
 		return -1; //Input file not opened.
 	num_dotcodes = count_raw(f);
 

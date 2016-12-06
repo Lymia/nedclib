@@ -1,6 +1,3 @@
-
-
-#include "stdafx.h"
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
@@ -10,11 +7,11 @@
 #include "../nedclib/nedclib.h"
 
 
-// If compiling on VS 2005, comment out fopen_s and vsprintf_s completely.
+// If compiling on VS 2005, comment out nedc_fopen and vsprintf_s completely.
 // It was easier to rewrite these fuctions rather than rewrite the code
 // to be compilable on older VS versions.
 
-//int fopen_s(FILE ** f, char *name, char *spec)
+//int nedc_fopen(FILE ** f, char *name, char *spec)
 //{
 //	if(f==NULL)
 //		return 1;
@@ -83,19 +80,19 @@ int main(int argc, char* argv[])
 
 	for(i=1;i<argc;i++)
 	{
-		if(!_stricmp(argv[i],"-i"))
+		if(!strcasecmp(argv[i],"-i"))
 		{
 			i++;
 			file_in=i;
 			continue;
 		}
-		if(!_stricmp(argv[i],"-o"))
+		if(!strcasecmp(argv[i],"-o"))
 		{
 			i++;
 			file_out=i;
 			continue;
 		}
-		if(!_stricmp(argv[i],"-c"))
+		if(!strcasecmp(argv[i],"-c"))
 		{
 			if(operation == 2)
 			{
@@ -105,7 +102,7 @@ int main(int argc, char* argv[])
 			operation = 1;
 			continue;
 		}
-		if(!_stricmp(argv[i],"-d"))
+		if(!strcasecmp(argv[i],"-d"))
 		{
 			if(operation == 1)
 			{
@@ -115,7 +112,7 @@ int main(int argc, char* argv[])
 			operation = 2;
 			continue;
 		}
-		if(!_stricmp(argv[i],"-level"))
+		if(!strcasecmp(argv[i],"-level"))
 		{
 			level=strtoul(argv[++i],0,0);
 			if(level>3)
@@ -125,7 +122,7 @@ int main(int argc, char* argv[])
 			}
 			continue;
 		}
-		if(!_stricmp(argv[i],"-method"))
+		if(!strcasecmp(argv[i],"-method"))
 		{
 			method=strtoul(argv[++i],0,0);
 			if(method>1)
@@ -135,7 +132,7 @@ int main(int argc, char* argv[])
 			}
 			continue;
 		}
-		if(!_stricmp(argv[i],"-lzwindow"))
+		if(!strcasecmp(argv[i],"-lzwindow"))
 		{
 			lzwindow=strtoul(argv[++i],0,0);
 			/*if(lzwindow > 32768)
@@ -145,7 +142,7 @@ int main(int argc, char* argv[])
 			}*/
 			continue;
 		}
-		if(!_stricmp(argv[i],"-lzsize"))
+		if(!strcasecmp(argv[i],"-lzsize"))
 		{
 			lzsize=strtoul(argv[++i],0,0);
 			/*if(lzsize> 32768)
@@ -155,15 +152,15 @@ int main(int argc, char* argv[])
 			}*/
 			continue;
 		}
-		if(!_stricmp(argv[i],"-verbose"))
+		if(!strcasecmp(argv[i],"-verbose"))
 		{
 			verbose = 1;
 		}
 
-		if(!_stricmp(argv[i],"-log"))
+		if(!strcasecmp(argv[i],"-log"))
 		{
 			i++;
-			if(fopen_s(&log,argv[i],"w")!=0)
+			if(nedc_fopen(&log,argv[i],"w")!=0)
 			{
 				printf("Failed to open log file\n");
 				log=NULL;
@@ -228,7 +225,7 @@ int main(int argc, char* argv[])
 	
 
 	//f=;
-	if(fopen_s(&f,argv[file_in],"rb")!=0)
+	if(nedc_fopen(&f,argv[file_in],"rb")!=0)
 	{
 		printf("Unable to open input file %s\n",argv[file_in]);
 		return 1;
@@ -377,7 +374,7 @@ int main(int argc, char* argv[])
 			log_write("LZ Window: %d\n",lzwindow);
 			log_write("LZ Size: %d\n",lzsize);
 		}
-		if(fopen_s(&f,argv[file_out],"wb")!=0)
+		if(nedc_fopen(&f,argv[file_out],"wb")!=0)
 		{
 			printf("Unable to open output file %s\n",argv[file_out]);
 			return 1;
@@ -386,7 +383,7 @@ int main(int argc, char* argv[])
 	}
 	else
 	{	
-		if(fopen_s(&f,argv[file_out],"wb")!=0)
+		if(nedc_fopen(&f,argv[file_out],"wb")!=0)
 		{
 			printf("Unable to open output file %s\n",argv[file_out]);
 			return 1;

@@ -18,8 +18,8 @@ unsigned char tt=16;
 unsigned char kk=239;
 
 int pp=0x187;
-unsigned char *alpha_to, *index_of, *gg;
-unsigned char *recd;
+unsigned char *alpha_to = NULL, *index_of = NULL, *gg = NULL;
+unsigned char *recd = NULL;
 unsigned char b0 = 0x78;
 
 int rs_init=-1;
@@ -59,14 +59,17 @@ void generate_gf()
 {
    register int i, mask ;
 
-   if(alpha_to!=NULL)
+   if(alpha_to != NULL) {
 	   free(alpha_to);
-   if(index_of!=NULL)
+     alpha_to = NULL;
+   }
+   if(index_of != NULL) {
 	   free(index_of);
+     index_of = NULL;
+   }
 
    alpha_to=(unsigned char*)malloc(nn+1);
    index_of=(unsigned char*)malloc(nn+1);
-
 
    mask=1;
    alpha_to[nn]=0;
@@ -87,8 +90,10 @@ void gen_poly(int errlen=16)
 */
  {
    register int i,j,x,y ;
-   if(gg!=NULL)
+   if(gg != NULL) {
 	   free(gg);
+     gg = NULL;
+   }
    gg=(unsigned char*)malloc(errlen);
    gg[0]=alpha_to[b0];
    for(i=1;i<errlen;i++)
@@ -132,8 +137,10 @@ void initialize_rs(int bits, int polynomial, int index, int errlen)
 		gen_poly(errlen);
 
 		curr_errlen=errlen;
-		if(recd!=NULL)
+		if(recd!=NULL) {
 			free(recd);
+      recd = NULL;
+    }
 		recd=(unsigned char*)malloc(nn);
 		rs_init=mm;
 	}
@@ -158,6 +165,11 @@ void free_rs()
 		free(gg);
 	if(recd!=NULL)
 		free(recd);
+
+  alpha_to = NULL;
+  index_of = NULL;
+  gg = NULL;
+  recd = NULL;
 
 	rs_init=-1;
 

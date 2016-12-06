@@ -1,7 +1,6 @@
 // nedcenc.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
 #include <stdio.h>
 
 #include "../nedclib/nedclib.h"
@@ -29,7 +28,7 @@ int main(int argc, char* argv[])
 		printf("\t-d\tDecode raw 2 bin. Outfile required\n");
 		printf("\t-f\tRepair raw file\n");
 		printf("\t-s\tDot code signature (encoding only)\n\t\t< - Input hex.\n\t\t<< - ");
-		printf("Input <\n\t\t> - If inputting hex, end hex input, otherwise input >");
+		printf("Input <\n\t\t> - If inputting hex, end hex input, otherwise input >\n");
 		return 1;
 	}
 
