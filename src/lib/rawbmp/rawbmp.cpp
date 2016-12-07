@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../nedclib.h"
+#include "nedclib2.h"
 
 #include "dcs.h" //RAW2BMP, BMP2RAW
 

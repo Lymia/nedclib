@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "nedclib.h"
+#include "nedclib2.h"
 
 int InFileList[256],OutFileList[256];
 

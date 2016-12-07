@@ -1,5 +1,5 @@
-#ifndef NEDCLIB_H
-#define NEDCLIB_H
+#ifndef NEDCLIB2_H
+#define NEDCLIB2_H
 #pragma once
 
 // The following ifdef block is the standard way of creating macros which make exporting 
@@ -8,7 +8,7 @@
 // that uses this DLL. This way any other project whose source files include this file see 
 // NEDCLIB_API functions as being imported from a DLL, whereas this DLL sees symbols
 // defined with this macro as being exported.
-#ifdef NEDCLIB_EXPORTS
+#ifdef NEDCLIB2_EXPORTS
   #ifdef _WIN32
     #define NEDCLIB_API __declspec(dllexport)
   #else
@@ -85,9 +85,7 @@ extern NEDCLIB_API int skip_huffman;
 extern NEDCLIB_API int skip_lz77;
 
 //--- NES Functions ---
-NEDCLIB_API int nedclib_make_nes(unsigned char *nesdata);
-NEDCLIB_API uint16_t nedclib_nes_encnmi(uint16_t nmi);
-NEDCLIB_API uint16_t nedclib_nes_decnmi(uint16_t nmi);
+NEDCLIB_API int nedc_encode_nes(unsigned char *nesdata);
 
 #define VERSION_MAJOR 1
 #define VERSION_MINOR 4
@@ -103,4 +101,4 @@ NEDCLIB_API uint16_t nedclib_nes_decnmi(uint16_t nmi);
 
 #define NEDCLIB_DOWNLOAD "http://www.caitsith2.net/ereader/tools/nedclib_dll.rar"
 
-#endif /* NEDCLIB_H */
+#endif /* NEDCLIB2_H */

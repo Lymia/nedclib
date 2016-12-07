@@ -2,7 +2,7 @@
 #define DCS
 #include "dcs.h"
 
-#include "../nedclib.h"
+#include "nedclib2.h"
 
 void eight_ten_modulate(void)
 {

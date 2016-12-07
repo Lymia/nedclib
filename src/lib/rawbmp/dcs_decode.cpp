@@ -4,7 +4,7 @@
 #define DCS
 #include "dcs.h"
 
-#include "../nedclib.h"
+#include "nedclib2.h"
 
 unsigned char mod0,mod1,mod2,mod3,mod4,mod5,mod6,mod7;
 

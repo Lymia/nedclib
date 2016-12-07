@@ -1,4 +1,4 @@
-#include "../nedclib.h"
+#include "nedclib2.h"
 #include "rs.h"
 
 unsigned char ShortDotCodeHeader[0x30] = {

@@ -1,24 +1,8 @@
-#include "nedclib.h"
+#include "nedclib2.h"
 
 static char DMCA_data[0x19] = "\0\0DMCA NINTENDO E-READER";
 
-NEDCLIB_API uint16_t nedclib_nes_decnmi(uint16_t nmi) {
-  for(int i=0; i<0x18; i++) {
-    nmi ^= (DMCA_data[i] << 8);
-    for(int j=0; j<8; j++) {
-      if(nmi & 0x8000) {
-        nmi <<= 1;
-        nmi ^= 0x0C8D;
-      } else {
-        nmi <<= 1;
-      }
-    }
-  }
-
-  return nmi;
-}
-
-NEDCLIB_API uint16_t nedclib_nes_encnmi(uint16_t nmi) {
+static uint16_t encode_nmi(uint16_t nmi) {
   for(int i=0; i<0x18; i++) {
     for(int j=0; j<8; j++) {
       if(nmi & 0x0001) {
@@ -34,12 +18,12 @@ NEDCLIB_API uint16_t nedclib_nes_encnmi(uint16_t nmi) {
   return nmi;
 }
 
-NEDCLIB_API int nedclib_make_nes(unsigned char *nesdata) {
+NEDCLIB_API int nedc_encode_nes(unsigned char *nesdata) {
   if(!is_nes(nesdata)) return 1;
   if(nesdata[4] != 1 || nesdata[5] != 1 || (nesdata[6] & 0xFE) != 0 || nesdata[7] != 0)
     return 2;
 
-  uint16_t nmi = nedclib_nes_encnmi((nesdata[0x3FFB+16] << 8) + (nesdata[0x3FFA+16]));
+  uint16_t nmi = encode_nmi((nesdata[0x3FFB+16] << 8) + (nesdata[0x3FFA+16]));
   nesdata[0x3FFB+16] = (nmi >> 8) & 0xFF;
   nesdata[0x3FFA+16] = nmi & 0xFF;
 

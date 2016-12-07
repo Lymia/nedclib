@@ -4,7 +4,7 @@
 #include <malloc.h>
 #include <string.h>
 
-#include "../nedclib.h"
+#include "nedclib2.h"
 
 NEDCLIB_API FILE *log;
 NEDCLIB_API int verbose=0;

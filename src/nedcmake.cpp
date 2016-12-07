@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "nedclib.h"
+#include "nedclib2.h"
 
 unsigned char carddata[0x81C];
 unsigned char rawdata[0xB60];
@@ -620,7 +620,7 @@ int main(int argc, char* argv[])
 			if(is_nes(bindata))
 			{
 				fread(bindata,1,filesize,f);
-				nedclib_make_nes(bindata);
+				nedc_encode_nes(bindata);
 				filesize-=16;
 				for(i=0;i<filesize;i++)
 					bindata[i]=bindata[i+16];

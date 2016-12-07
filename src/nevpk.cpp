@@ -4,7 +4,7 @@
 #include <malloc.h>
 #include <string.h>
 
-#include "nedclib.h"
+#include "nedclib2.h"
 
 void usage(void)
 {

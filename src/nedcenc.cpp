@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "nedclib.h"
+#include "nedclib2.h"
 
 
 int main(int argc, char* argv[])

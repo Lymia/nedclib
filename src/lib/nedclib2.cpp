@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <malloc.h>
 
-#include "nedclib.h"
+#include "nedclib2.h"
 #include "rawbin/rs.h"
 
 int raw_pos;
