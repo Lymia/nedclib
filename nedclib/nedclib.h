@@ -21,14 +21,7 @@
 //#define GENERIC_DOTCODE 1
 
 #include <stdio.h>
-
-/*
-// This class is exported from the nedclib.dll
-class NEDCLIB_API Cnedclib {
-public:
-	Cnedclib(void);
-	// TODO: add your methods here.
-};*/
+#include <stdint.h>
 
 //Common internal functions/variables
 int count_raw(FILE *f);
@@ -49,9 +42,9 @@ int close_raw(FILE *f, int return_res);
 
 //--- common external functions ---
 NEDCLIB_API void nedclib_version(void);
-NEDCLIB_API int is_vpk(unsigned char *bindata);
-NEDCLIB_API int is_nes(unsigned char *nesdata);
-NEDCLIB_API int is_bmp(char *bmpfile);
+NEDCLIB_API bool is_vpk(unsigned char *bindata);
+NEDCLIB_API bool is_nes(unsigned char *nesdata);
+NEDCLIB_API bool is_bmp(char *bmpfile);
 
 NEDCLIB_API int nedc_fopen(FILE** f, const char* name, const char* mode);
 

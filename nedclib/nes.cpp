@@ -1,6 +1,6 @@
 #include "nedclib.h"
 
-char DMCA_data[0x19] = "\0\0DMCA NINTENDO E-READER";
+static char DMCA_data[0x19] = "\0\0DMCA NINTENDO E-READER";
 
 NEDCLIB_API unsigned short nes_dec(unsigned short nmi) {
   for(int i=0; i<0x18; i++) {
@@ -35,8 +35,7 @@ NEDCLIB_API unsigned short nes_enc(unsigned short nmi) {
 }
 
 NEDCLIB_API int make_nes(unsigned char *nesdata) {
-  if(nesdata[0] != 'N' || nesdata[1] != 'E' || nesdata[2] != 'S' || nesdata[3] != 0x1A)
-    return 1;
+  if(!is_nes(nesdata)) return 1;
   if(nesdata[4] != 1 || nesdata[5] != 1 || (nesdata[6] & 0xFE) != 0 || nesdata[7] != 0)
     return 2;
 
