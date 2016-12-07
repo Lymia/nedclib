@@ -1,3 +1,7 @@
+#ifndef NEDCLIB_H
+#define NEDCLIB_H
+#pragma once
+
 // The following ifdef block is the standard way of creating macros which make exporting 
 // from a DLL simpler. All files within this DLL are compiled with the NEDCLIB_EXPORTS
 // symbol defined on the command line. this symbol should not be defined on any project
@@ -81,9 +85,9 @@ extern NEDCLIB_API int skip_huffman;
 extern NEDCLIB_API int skip_lz77;
 
 //--- NES Functions ---
-NEDCLIB_API int make_nes(unsigned char *nesdata);
-NEDCLIB_API unsigned short nes_enc(unsigned short NMI_vector);
-NEDCLIB_API unsigned short nes_dec(unsigned short NMI_vector);
+NEDCLIB_API int nedclib_make_nes(unsigned char *nesdata);
+NEDCLIB_API uint16_t nedclib_nes_encnmi(uint16_t nmi);
+NEDCLIB_API uint16_t nedclib_nes_decnmi(uint16_t nmi);
 
 #define VERSION_MAJOR 1
 #define VERSION_MINOR 4
@@ -98,3 +102,5 @@ NEDCLIB_API unsigned short nes_dec(unsigned short NMI_vector);
 #define RAW2BMP_MINOR 4
 
 #define NEDCLIB_DOWNLOAD "http://www.caitsith2.net/ereader/tools/nedclib_dll.rar"
+
+#endif /* NEDCLIB_H */

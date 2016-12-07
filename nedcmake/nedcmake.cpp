@@ -620,7 +620,7 @@ int main(int argc, char* argv[])
 			if(is_nes(bindata))
 			{
 				fread(bindata,1,filesize,f);
-				make_nes(bindata);
+				nedclib_make_nes(bindata);
 				filesize-=16;
 				for(i=0;i<filesize;i++)
 					bindata[i]=bindata[i+16];
