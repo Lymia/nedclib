@@ -1,10 +1,8 @@
-// raw2bmp.cpp : Defines the entry point for the console application.
-//
-
-#include "../nedclib/nedclib.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include "nedclib.h"
 
 int InFileList[256],OutFileList[256];
 

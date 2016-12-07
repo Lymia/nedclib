@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../nedclib/nedclib.h"
+#include "nedclib.h"
 
 unsigned char carddata[0x81C];
 unsigned char rawdata[0xB60];
