@@ -179,7 +179,6 @@ NEDCLIB_API int raw2bmp_f(unsigned char *rawdata, char *bmpfile)
 NEDCLIB_API int bmp2raw(char *bmpfile, char *rawfile)
 {
 	FILE *f;
-	int filelen;
 	if(nedc_fopen(&f,bmpfile,"rb"))
 		return 1;
 	if(!read_bmp(f))

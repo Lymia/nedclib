@@ -156,7 +156,6 @@ NEDCLIB_API int bin2raw(char *binfile, char *rawfile)
 	int dotcodepointer=0;
 	int dotcodeinterleave;
 	
-	int result;
 	int i,j,k,l,count;
 	int temp;
 	int size;
@@ -261,10 +260,8 @@ NEDCLIB_API int bin2raw_d(unsigned char *bin, unsigned char *raw, int size)
 	int dotcodepointer=0;
 	int dotcodeinterleave;
 	
-	int result;
-	int i,j,k,l,count;
+	int i,j,k;
 	int temp;
-	FILE *f, *g;
 
 	initialize_rs();
 
@@ -356,10 +353,9 @@ NEDCLIB_API int bin2raw_f(unsigned char *bin, char *rawfile, int size)
 	int dotcodepointer=0;
 	int dotcodeinterleave;
 	
-	int result;
-	int i,j,k,l,count;
+	int i,j,k;
 	int temp;
-	FILE *f, *g;
+	FILE *g;
 
 	initialize_rs();
 
@@ -469,16 +465,9 @@ void deinterleave_dotcode(unsigned char *data, unsigned char *interleave, int do
 NEDCLIB_API int raw2bin(char *rawfile, char *binfile)
 {
 	unsigned char data[64];
-	unsigned char erasure[64] = {
-		0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-	};
 	char filename[256];
 
 	unsigned char NEDC_STR[] = "NINTENDO";
-	int multistrip_type;
 	unsigned char bin_header[24];
 	unsigned char bin[0x10008];
 	unsigned char dotcodetemp[0x15C28];
@@ -540,14 +529,9 @@ NEDCLIB_API int raw2bin(char *rawfile, char *binfile)
 			if(data[i+0x1A]!=NEDC_STR[i])
 			{
 				MultiStrip = 1;
-				multistrip_type = 1;
 				break;
 			}
-		if(i==8)
-		{
-			multistrip_type = 0;
-		}
-		else
+		if(i!=8)
 		{
 			continue;
 			//return -2		//Not an NEDC dotcode.

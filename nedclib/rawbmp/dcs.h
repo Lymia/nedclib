@@ -162,4 +162,4 @@ void reverse_dcs(void);
 int read_bmp(FILE *f);
 
 int correct_address(unsigned long *addr_data);
-void calc_addr(int address);
+void calc_addr(unsigned long address);

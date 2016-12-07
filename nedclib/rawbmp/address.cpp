@@ -1,7 +1,7 @@
 #define DCS
 #include "dcs.h"
 
-void calc_addr(int address)
+void calc_addr(unsigned long address)
 {
 	int start;
 
@@ -50,7 +50,7 @@ void calc_addr(int address)
 		addr[1] = 0x3FF;
 	}
 
-    for(int i=start,base=0x769;i<=(address+1);i++,base=0x769)
+    for(unsigned long i=start,base=0x769;i<=(address+1);i++,base=0x769)
     {
 		addr[0] = addr[1];
         addr[1] = addr[0] ^ ((i & (-i)) * base);

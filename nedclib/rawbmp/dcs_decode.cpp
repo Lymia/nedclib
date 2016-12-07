@@ -323,7 +323,7 @@ void eight_ten_demodulate(void)
 void reversebmp(void)
 {	
 	int i, j, bmp_flip=1;
-	int length,mask,width;
+	int length,width;
 
 	length=(dotcodelen*35)+9;
 	width=44*dpi_multiplier;

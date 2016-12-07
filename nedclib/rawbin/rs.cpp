@@ -256,16 +256,13 @@ in R. Blahut's "Theory ... of Error-Correcting Codes". */
 int eras_dec_rs(int *eras_pos,int no_eras)
 
 {
-  register int i,j,r,u,q,tmp,tmp1,tmp2,num1,num2,den,pres_root,pres_loc;
+  register int i,j,r,q,tmp,tmp1,num1,num2,den,pres_root,pres_loc;
   unsigned char phi[2*d_tt+1],tmp_pol[2*d_tt+1]; /* The erasure locator in polynomial form */
-  int U,syn_err,discr_r,deg_phi,deg_lambda,L,deg_omega,t_after_eras;
+  int U,discr_r,deg_phi,deg_lambda,L,deg_omega;
   unsigned char lambda[2*d_tt+1],s[2*d_tt+1],lambda_pr[2*d_tt+1];/* Err+Eras Locator poly and syndrome poly */ 
   unsigned char b[2*d_tt+1],T[2*d_tt+1],omega[2*d_tt+1];
-  unsigned char syn_error=0, root[2*d_tt], z[d_tt+1], err[d_nn], reg[2*d_tt+1] ;
+  unsigned char syn_error=0, root[2*d_tt], err[d_nn], reg[2*d_tt+1] ;
   unsigned char loc[2*d_tt],count = 0;
-
-/* Maximum # ch errs correctable after "no_eras" erasures */
-   t_after_eras = (int)floor((2.0*tt-no_eras)/2.0);
 
 /* Compute erasure locator polynomial phi[x] */
   zerofill(tmp_pol,nn-kk+1);
