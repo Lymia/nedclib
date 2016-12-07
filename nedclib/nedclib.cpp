@@ -22,7 +22,6 @@ int count_bin(FILE *f)
 {
 	int count=0;
 	int i;
-	char header[9] = {0,0,0,0,0,0,0,0,0};
 	unsigned char *data;
 
 	fseek(f,0,SEEK_END);
@@ -53,7 +52,6 @@ int count_bin(FILE *f)
 int read_next_bin(FILE *f, unsigned char *bindata)
 {
 	int result;
-	int i,j,k;
 	bin_pos=ftell(f);
 	switch(bin_type)
 	{
@@ -72,10 +70,9 @@ int read_next_bin(FILE *f, unsigned char *bindata)
 
 int count_raw(FILE *f)
 {
-	int i=0,count=0;
+	int count=0;
 	unsigned char *data;
 	
-
 	data = (unsigned char*)malloc(0xB60);	//Worst case raw file size.
 	if(data==NULL)
 		return 0;	//Unable to allocate memory (and therefore count the raw data files.)

@@ -177,7 +177,7 @@ void shiftJIS(char *str, char *output, int len, int cardmode)
 		{
 			if(str[i] == 0)
 				break;
-			output[i] = shorttitle_table[str[i]];
+			output[i] = shorttitle_table[(unsigned char) str[i]];
 		}
 		output[i] = 0;
 	}

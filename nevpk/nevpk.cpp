@@ -6,34 +6,6 @@
 
 #include "../nedclib/nedclib.h"
 
-
-// If compiling on VS 2005, comment out nedc_fopen and vsprintf_s completely.
-// It was easier to rewrite these fuctions rather than rewrite the code
-// to be compilable on older VS versions.
-
-//int nedc_fopen(FILE ** f, char *name, char *spec)
-//{
-//	if(f==NULL)
-//		return 1;
-//	*f=fopen(name,spec);
-//	if(*f==NULL)
-//		return 1;
-//	else
-//		return 0;
-//	
-//}
-//
-//int vsprintf_s(char *string, int sizeinbytes, const char *format, va_list ap)
-//{
-//	
-//	vsprintf(string,format,ap);
-//	return 0;
-//}
-
-//////////////////////////////////////////////////////////////////////
-
-
-
 void usage(void)
 {
 	printf("usage :\n");
@@ -280,7 +252,7 @@ int main(int argc, char* argv[])
 							best_move = b_move;
 							best_size = l - 65536;
 						}*/
-						printf("Filesize: %d, lzwindow: %d, lzsize: %d          ",((bitsize==0xFFFFFFFF)?0:bitsize/8),k,j);
+						printf("Filesize: %ld, lzwindow: %d, lzsize: %d          ",((bitsize==0xFFFFFFFF)?0:bitsize/8),k,j);
 						printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
 						printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
 						printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
@@ -330,7 +302,7 @@ int main(int argc, char* argv[])
 			{
 				for(k=1;k<lzsize;k+=2)
 				{
-					printf("Filesize: %d, %d, %d                                     ",((bitsize==0xFFFFFFFF)?0:bitsize/8),(lzwindow-1-j),(lzsize-1-k));
+					printf("Filesize: %ld, %d, %d                                     ",((bitsize==0xFFFFFFFF)?0:bitsize/8),(lzwindow-1-j),(lzsize-1-k));
 							printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
 							printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
 							printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");

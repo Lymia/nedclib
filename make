@@ -39,7 +39,7 @@ build_os() {
   done
 }
 
-if [ ! "$1" -e "" ]; then
+if [ ! "$1" = "" ]; then
   build_os $1
 else
   build_os linux

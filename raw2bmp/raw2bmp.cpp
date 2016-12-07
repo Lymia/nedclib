@@ -24,8 +24,6 @@ int main(int argc, char* argv[])
 	int i,j;
 	int OptI=0;
 	int OptO=0;
-	int OptD=0;
-	int OptR=0;
 
 	printf("Nintendo e-Reader dotcode strip tool Version %d.%d\n",RAW2BMP_MAJOR,RAW2BMP_MINOR);
 	printf("Copyrighted by CaitSith2\n\n");
