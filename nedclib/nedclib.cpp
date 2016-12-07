@@ -1,6 +1,3 @@
-// nedclib.cpp : Defines the entry point for the DLL application.
-//
-
 #include <stdio.h>
 #include <malloc.h>
 
